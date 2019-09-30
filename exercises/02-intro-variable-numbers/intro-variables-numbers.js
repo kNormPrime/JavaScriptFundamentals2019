@@ -1,38 +1,37 @@
-//set myName variable to your name;
+ myName("Kevin Normile");
 function myName(name) {
   let myName = name;
-
-  return myName;
+return myName ;
 }
 
 function setTeachersNames(teachersName) {
   // change code below this line so that we can set the variable.
-  const teachers = null;
+  let teachers = null;
   teachers = teachersName; //  <- this is  invalid because teachers is a const. How can we fix this?
 
   return teachers;
-}
+}                             setTeachersNames("Matina & Jamal");
 
 /*** return the sum of both arguments  ***/
 function add(a, b) {
-  let sum;
+  let sum = a + b ;
 
   return sum;
 }
 
-/*** Using the increment operator, add a year to the argument and make me older */
-function ageMeByAYear(age) {
-  return age;
+/*** Using the increment operator, add a year to the argument and make me older ***/
+function ageMeByAYear(age) {  let year = ++age ;
+     return year ;   
 }
 
 /*** Using the decrement operator make me age decrement by a year  ***/
 function makeMeYoungerByAYear(age) {
-  return age;
+    return --age;
 }
 
 /** Take the argument that will be a string and return an integer  */
 function convertStringToInt(str) {
-  let int;
+  let int = parseInt(str);
   return int;
 }
 
@@ -46,14 +45,14 @@ function convertStringToInt(str) {
  *
  */
 function getTheCharacterPosition(name, letter) {
-  let characterPosition;
+  let characterPosition = name.indexOf(letter);
   return characterPosition;
 }
 
 /** Take the argument and return the length of the argument */
 
 function stringLength(str) {
-  let strLength;
+  let strLength = str.length;
 
   return strLength;
 }
@@ -66,7 +65,7 @@ function stringLength(str) {
  */
 
 function getLastCharacter(str) {
-  let lastCharacter;
+  let lastCharacter = str[str.length-1];
 
   return lastCharacter;
 }
@@ -84,7 +83,9 @@ function getLastCharacter(str) {
  */
 
 function getLastWordInPlaceName(place) {
-  let newPlace;
+  //let newPlace = place.split(' ')[1];
+  let NmSpace = place.indexOf(" ");
+  let newPlace = place.substring(NmSpace + 1);
 
   return newPlace;
 }
@@ -95,7 +96,9 @@ function getLastWordInPlaceName(place) {
  */
 
 function getLargerNumber(arg1, arg2) {
-  let largestNumber;
+  let largestNumber ;
+  if( arg1 > arg2){ largestNumber = arg1 ; }
+  else   { largestNumber = arg2;}
 
   return largestNumber;
 }
@@ -113,7 +116,8 @@ function getLargerNumber(arg1, arg2) {
  */
 
 function replaceLastName(fullName, newLastName) {
-  let newFullName;
+  let newFullName = "";   let nameSpace = fullName.indexOf(" ");
+     newFullName = (fullName.substring(0,nameSpace + 1) + newLastName); 
   return newFullName;
 }
 
@@ -123,9 +127,11 @@ function replaceLastName(fullName, newLastName) {
  */
 
 function capitalizeLastName(fullName) {
-  let capitalizeLastName;
-
-  return capitalizeLastName;
+  let correctLastName;  let name_Space = fullName.indexOf(" ");
+     correctLastName = ( fullName.substring(0,name_Space +1) 
+                      + fullName[name_Space +1].toUpperCase() 
+                      + fullName.substring(name_Space +2, fullName.length) ) ;
+  return correctLastName;
 }
 
 /***
@@ -134,7 +140,7 @@ function capitalizeLastName(fullName) {
  *
  */
 function compareEquality(a, b) {
-  if (a == b) {
+  if (a === b) {
     // Change this line
     return 'Equal';
   }
@@ -155,7 +161,7 @@ function compareEquality(a, b) {
 
 function testStrictNotEqual(a, b) {
   // Only Change Code Below this Line
-  if (undefined) {
+  if (a !== b) {
     // Only Change Code Above this Line
 
     return 'Not Equal';
@@ -176,7 +182,10 @@ function testStrictNotEqual(a, b) {
  */
 
 function testLogicalAnd(num) {
-  // code here
+  let reply = "Yes" ;
+  if(num!==6 && num!==7 && num!==8 && num!==9)
+      {   reply = "No";}
+ return  reply ;
 }
 
 /**
@@ -190,11 +199,17 @@ function testLogicalAnd(num) {
 
 function testLogicalOr(num) {
   // code here
+      let ans = "" ;  const boolVal = false ;
+     if( boolVal || num)  { ans = "Yes";}  
+      else { ans = "No";}
+  return  ans ;
 }
 
 /** Using the modulus operator determine if the argument is an even or odd number */
 
 function isEvenOrOdd(isEven) {
+   isEven = (isEven % 2) == 0
+      ? isEven = true  : isEven = false ;
   return isEven;
 }
 
@@ -215,7 +230,48 @@ function isEvenOrOdd(isEven) {
  * 
  *  *****/
 
-function caseInSwitch(num) {}
+function caseInSwitch(num) {
+  let equalTo = "undefined, for now" ;  
+  const argTest = false ;
+         // test for no argument passed to function
+  if(num===argTest) {equalTo = "UNDEFINED" ;}
+  else
+  {
+    switch(num){
+      case(1):
+        equalTo = "ONE" ;
+        break;
+      case(2):
+        equalTo = "TWO" ;
+        break;
+      case(3):
+        equalTo = "THREE" ;
+        break;  
+      case(4):
+        equalTo = "FOUR" ;
+        break;
+      case(5):
+        equalTo = "FIVE" ;
+        break;
+      case(6):
+        equalTo = "SIX" ;
+        break;      
+      case(7):
+        equalTo = "SEVEN" ;
+        break;
+      case(8):
+        equalTo = "EIGHT" ;
+        break;
+      case(9):
+        equalTo = "NINE" ;
+        break;
+      default:
+        equalTo = "PLEASE TRY AGAIN" ;
+        break;  
+    }  // end switch
+   }   // end else
+   return equalTo ; 
+}  // end function
 
 /***
  *  Create a function named timesFive
@@ -228,6 +284,12 @@ function caseInSwitch(num) {}
  *   timesFive() should return 5
  *
  */
+function  timesFive(argValue) {
+   let product5 ;  
+   if (argValue) { product5 = 5*argValue ;}
+   else {product5 = 5 ;}
+   return product5 ;
+}
 
 /***
  *  create a function called lowerCaseName that will return the string lowerCased
@@ -240,11 +302,12 @@ function caseInSwitch(num) {}
  *
  *
  */
-
-// Write a function here
-
-/** Ignore below. It's for the tests. **/
-
+function lowerCaseName(str) {
+  if (!str) {
+    return;
+  }
+  if(str) {return str.toLowerCase(0);}
+}
 let myExports = {
   myName,
   setTeachersNames,
