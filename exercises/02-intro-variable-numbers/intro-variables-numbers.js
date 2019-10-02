@@ -142,9 +142,9 @@ function capitalizeLastName(fullName) {
 function compareEquality(a, b) {
   if (a === b) {
     // Change this line
-    return 'Equal';
+    return "Equal";
   }
-  return 'Not Equal';
+  return "Not Equal";
 }
 
 /** The function should use the strict inequality operator
@@ -164,14 +164,14 @@ function testStrictNotEqual(a, b) {
   if (a !== b) {
     // Only Change Code Above this Line
 
-    return 'Not Equal';
+    return "Not Equal";
   }
-  return 'Equal';
+  return "Equal";
 }
 
 /***
  *  Refactor the code down below to use the logical && operator.
- *  The should return "Yes" when it is 6, 7, 8 and 9.
+ *  This should return "Yes" when it is 6, 7, 8 and 9.
  *  ```javascript
  *  testLogicalAnd(9); // should return "Yes"
  *  testLogicalAnd(6); // should return "Yes"
