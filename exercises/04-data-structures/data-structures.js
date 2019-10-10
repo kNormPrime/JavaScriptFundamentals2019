@@ -35,6 +35,9 @@ function accessingAnArray() {
 
 function addFunctionsIntoArray() {
   // Create and return an array here
+  let funk  = [(x,y)=>{return x+y;} , (x,y)=>{return x-y;} ] ;
+  return funk ;
+
 }
 
 /**
@@ -43,15 +46,14 @@ function addFunctionsIntoArray() {
  * @returns { number } the highest number that was in the array
  * @example
  * highestNumber([1, 10, 2, 3, 4]) // 10
- * highestNumber([-1, -5, -4]) // -1
+ * highestNumber([-1, -5, -4]) // -1kkkkk
  *
  **/
 function highestNumber(array) {
   let i ;  let highest = array[0] ;
-  for (i=0 ; i<10 ; i++)
+  for (i=0 ; i<array.length ; i++)
   { if(array[i] > highest) { highest = array[i] ;}
-  
-  }
+  }   return highest ;
 }
 
 /**
@@ -62,9 +64,12 @@ function highestNumber(array) {
  * @example
  * combineArray(['Japan','China','India'], ['USA','UK']) // ['Japan','China','India','USA','UK']
  **/
-
-function combineArray(array1, array2) {}
-
+    
+function combineArray(array1, array2) {
+  let newARRAY = [...array1, ...array2] ;
+  return newARRAY ;
+}
+ 
 /**
  * Given an array of objects, where each object has an ID,
  * loop through an array using a for loop (or for ... of loop).
@@ -101,7 +106,25 @@ function combineArray(array1, array2) {}
  * // Please note, the loop never iterates over the last item, because we found our object. There is no need to continue looping.
  */
 
-function findAndAbort(arr, id) {}
+function findAndAbort(arr, id) {
+  ///// start function
+  ////////////////////////////  
+  let testENTRY , outputOBJECT ;
+  for(let objectENTERED of arr) 
+  {
+    for(let keyItem in objectENTERED)
+     {
+      let grabENTRIES = objectENTERED[keyItem];
+     
+       testENTRY = grabENTRIES ;
+      if(testENTRY === id) break;
+       } // end nested loop
+   if(testENTRY === id) {outputOBJECT = objectENTERED; break ;}
+  }   // end main loop
+  return outputOBJECT ;
+  ///////////////////////////
+  ///// end function
+}
 
 /**
  * A palindrome is a word, phrase, or sequence that reads the same backward as forward, e.g., madam or racecar.
@@ -112,7 +135,20 @@ function findAndAbort(arr, id) {}
  *
  */
 
-function isPalindrome(str) {}
+function isPalindrome(str) {
+   // put string argument into an array
+  let strARRAY = str.split("");
+     
+  let  backwardARRAY = [] ; // need an array with entires backward
+  for (let i = str.length-1 ; i>=0; i--)
+  { backwardARRAY.push(strARRAY[i]); }
+        // need to convert the array back to a string
+        // so that we can do a comparison btween the
+        // original str argument and backwards string
+  let backSTR = backwardARRAY.join("");
+  if (backSTR === str) return true ;
+  else return false ;
+}
 
 /***
  * Use sets to remove duplicate elements from an array
@@ -121,9 +157,12 @@ function isPalindrome(str) {}
 
 function removeDuplicates() {
   let numbers = [2, 3, 4, 4, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 5, 32, 3, 4, 5]; // You can change this line
-
+let uniques = new Set ([]);
+for (let i =0 ; i<numbers.length ; i++)
+{ uniques.add(numbers[i]);  }
+let newArray = [...uniques];
   /** Return the an array of unique values */
-  return;
+  return newArray;
 }
 
 /**
@@ -138,7 +177,7 @@ function accessObject() {
     shoes: "cleats"
   };
   // Only change code below this line
-  return;
+  return clothes.hat;
 }
 
 /**
@@ -155,6 +194,8 @@ function createStudentObject() {
     skills: []
   };
   // Add code here
+  student.firstName = ["Kevin"];  student.lastName = ["Normile"];
+ student.skills = ["Math", "Physics", "Management"] ;
   return student;
 }
 
@@ -165,7 +206,12 @@ function createStudentObject() {
  * @return {object}
  */
 
-function createDogObject() {}
+function createDogObject() {
+ let  myDog =  {name: "Bingo" , legs: "4",
+                tails: "1" ,  
+                owners: ["Me", "YouToo", "Evil-Cat"] } ;
+    return myDog ;
+}
 
 /**
  *  Using Object.keys, return all the properties contained in the object.
@@ -184,6 +230,8 @@ function returnObjectProperties() {
   };
   // Add code here
   // hint you need to return an array
+   let doggyPROPS = Object.keys(dog) ;
+   return doggyPROPS ;
 }
 
 /**
@@ -193,7 +241,12 @@ function returnObjectProperties() {
  * @return {object} obj1 and obj2 combined
  */
 
-function combineObject(obj1, obj2) {}
+function combineObject(obj1, obj2) {
+let OBJ_1 = Object.entries(obj1) ;
+let OBJ_2 = Object.entries(obj2) ;
+  let objCOMBO = { OBJ_1 , OBJ_2 } ;
+return objCOMBO ;
+}
 
 /**
  * Find a record with the matching id in a collection of records.
@@ -243,6 +296,18 @@ function updateRecords(id, prop, value) {
   };
   // Only change the code after this line
   // Logic Here
+  ////////////////////////////////////////////
+//if (collection[id][prop] === "") { delete collection[id][prop] ;}
+//    else
+     {
+        if(prop === "album" || prop === "artist")
+             { collection[id][prop] = [value] ; }
+
+         else {collection[id][prop][1] = value ;}    
+      }
+              return collection ;
+
+  ////////////////////////////////////////////
 }
 
 module.exports = {
