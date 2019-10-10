@@ -194,8 +194,8 @@ function createStudentObject() {
     skills: []
   };
   // Add code here
-  student.firstName = ["Kevin"];  student.lastName = ["Normile"];
- student.skills = ["Math", "Physics", "Management"] ;
+  student.firstName = "Kevin";  student.lastName = "Normile";
+    student.skills = [ 'Math', 'Physics' , 'Management' ]  ;
   return student;
 }
 
@@ -242,10 +242,8 @@ function returnObjectProperties() {
  */
 
 function combineObject(obj1, obj2) {
-let OBJ_1 = Object.entries(obj1) ;
-let OBJ_2 = Object.entries(obj2) ;
-  let objCOMBO = { OBJ_1 , OBJ_2 } ;
-return objCOMBO ;
+  let objCOMBO = { ...obj1 , ...obj2 } ;            
+  return objCOMBO ;
 }
 
 /**
@@ -306,18 +304,23 @@ function updateRecords(id, prop, value) {
   // Only change the code after this line
   // Logic Here
   ////////////////////////////////////////////
-//if (collection[id][prop] === "") { delete collection[id][prop] ;}
-//    else
-     {
-        if(prop === "album" || prop === "artist")
-             { collection[id][prop] = [value] ; }
+  if (value === "") { delete collection[id][prop] ;}
+  else
+   {  /////
+      if(prop === "album" || prop === "artist")
+           {collection[id][prop] = value ; }
 
-         else {collection[id][prop][1] = value ;}    
-      }
-              return collection ;
-
+       else {  /// 
+              if(collection[id][prop] === undefined) {collection[id][prop]= [] ;}
+              
+              collection[id][prop].push(value) ;
+             }  ///   
+    }  /////
+            return collection ;
+  }
   ////////////////////////////////////////////
-}
+  
+
 
 module.exports = {
   createAnArray,
