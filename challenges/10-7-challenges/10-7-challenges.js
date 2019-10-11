@@ -18,8 +18,20 @@
    };
  *  
  */
+/////////////////////////////////////////////////  start funk /////
+function createGraduateObject(name, graduationYear, skills, links) 
+{ let KUNGFU = Object.values(skills) ; 
+  let retrieveLINK = [ links[0] , links[1] ] ;
+  const  graduate  =  {  name ,
+                         graduationYear,
+                         skills: KUNGFU ,
+                         links: {github: retrieveLINK[0] ,
+                                 linkedIn: retrieveLINK[1]} 
+                      }  ; 
+       return graduate ;    
+}
+/////////////////////////////////////////////  end funk /////////                      
 
-function createGraduateObject(name, graduationYear, skills, links) {}
 
 /**
  * Loop through a nested array of people. For each person in the array,
@@ -45,7 +57,27 @@ function createGraduateObject(name, graduationYear, skills, links) {}
  * It should look something like this:
  * @see /challenges/10-7-challenges/people-example.png
  */
-function createCsvString(people) {}
+function createCsvString(people) 
+{   // start function
+//////////////////////////////////////////
+let NAMEarray = [`"Name",`] ; let GENDERarray = [`"Gender",`];
+ let LOCATIONarray = [`"Location",` ] ;  let DOBarray = [`"DOB"`] ;
+ let bigARRAY = [NAMEarray + GENDERarray + LOCATIONarray + DOBarray] ;
+ let myPEOPS = [] ;
+ for(let i = 0 ; i < people.length  ; i++) 
+    { myPEOPS[i] = Object.values(people[i]);
+        bigARRAY.push(myPEOPS[i]) ; 
+    }
+    let outputSTRING = "" ;
+    let tempSTRING = "" ;
+    for(k=1; k<bigARRAY.length ; k++)
+      { tempSTRING = ( `"` + bigARRAY[k].join(`","`) + `"` + "\n") ;
+        outputSTRING = (outputSTRING + tempSTRING) ;
+      } 
+    outputSTRING = (bigARRAY[0] + "\n" + outputSTRING) ;
+    return outputSTRING  ;
+//////////////////////////////////////////
+}   // end function
 
 module.exports = {
   createGraduateObject,

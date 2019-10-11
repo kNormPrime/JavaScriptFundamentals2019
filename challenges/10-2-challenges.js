@@ -12,7 +12,14 @@
  *
  *  */
 
-function createAnArray() {}
+function createAnArray() {
+ let helloYOU = ["hi", "greetings", "howya 'doin"] ;
+  const func =() => { return "yo!" ;}
+   let myArray = ["Howdy" , func, helloYOU ] ;
+  return myArray ;
+  // let myArray = ["huwdhiu", () => {} , ];
+  // myArray.push[]
+}
 
 /***
  *   The function will accept two arguments: the string and the target.
@@ -32,7 +39,16 @@ function createAnArray() {}
  *
  *  */
 
-function uppercaseTargetWord(str, target) {}
+function uppercaseTargetWord(str, target) {
+  let tEST = str.split(" ");
+  if (target > tEST.lenth) return undefined ;
+  let upIt = tEST[target-1].toUpperCase() ;
+  tEST[target-1] = upIt ;
+  return tEST ;
+
+  //
+
+}
 
 module.exports = {
   createAnArray,
