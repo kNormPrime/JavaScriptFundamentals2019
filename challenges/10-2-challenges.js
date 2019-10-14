@@ -15,10 +15,9 @@
 function createAnArray() {
  let helloYOU = ["hi", "greetings", "howya 'doin"] ;
   const func =() => { return "yo!" ;}
-   let myArray = ["Howdy" , func, helloYOU ] ;
+   let myArray = ["Howdy" , func , helloYOU ] ;
   return myArray ;
-  // let myArray = ["huwdhiu", () => {} , ];
-  // myArray.push[]
+
 }
 
 /***
@@ -39,15 +38,19 @@ function createAnArray() {
  *
  *  */
 
-function uppercaseTargetWord(str, target) {
-  let tEST = str.split(" ");
-  if (target > tEST.lenth) return undefined ;
-  let upIt = tEST[target-1].toUpperCase() ;
-  tEST[target-1] = upIt ;
-  return tEST ;
-
-  //
-
+function uppercaseTargetWord(str, target) 
+{
+  let tEST = str.split(" "); 
+           // now test is an array of strings
+  if (target > tEST.length || target == 0) { return undefined ; }
+  else {
+  let upIt = tEST[target-1] ;
+  let BIG = upIt.toUpperCase() ;          
+  tEST[target-1] = BIG ;
+  let strBACK = tEST.join(" ");  
+              //converts array back to full string
+  return strBACK ;
+       }
 }
 
 module.exports = {
