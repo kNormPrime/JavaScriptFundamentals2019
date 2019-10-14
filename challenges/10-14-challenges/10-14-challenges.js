@@ -7,7 +7,12 @@
  * @example removeElement(['one','two','three']) // ['two', 'three']
  */
 
-function removeElement(arr) {}
+function removeElement(arr) 
+{
+  let newARRAY = [ ...arr] ;
+  newARRAY.shift() ;
+  return  newARRAY ;
+}
 
 /**
  * truncate a string
@@ -30,7 +35,20 @@ function removeElement(arr) {}
  *
  */
 
-function truncateString(str, num) {}
+function truncateString(str, num) 
+{ //////////////////////////////////
+let strArray = str.split("");
+let tempArray = [] ;
+let nwString = "" ;
+if(str.length > num)
+{ for(let i =0; i<num; i++)
+    {tempArray.push(strArray[i]);}
+     nwString = ( tempArray.join("") + `...` ) ;
+}
+else {  nwString = str ;}
+return nwString ;
+  /////////////////////////////////////
+}
 
 module.exports = {
   removeElement,
