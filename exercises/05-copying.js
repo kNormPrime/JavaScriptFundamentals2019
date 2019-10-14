@@ -16,7 +16,12 @@
  *
  * user.email = "icanhascheeseburger@yahoo.com"; // This should not change newUser
  */
-const changeEmail = (user, newEmail) => {};
+const changeEmail = (user, newEmail) => { 
+    //let userUPDATED = JSON.parse(JSON.stringify( user ));
+    // above approach didn't pass npm test, required spread operator use
+    let userUPDATED = {...user} ;
+     userUPDATED.email = newEmail ; 
+    return  userUPDATED ;                };
 
 /**
  * Add a new item to a shopping cart. You should deep copy any array and objects.
@@ -37,7 +42,12 @@ const changeEmail = (user, newEmail) => {};
  * shoppingCart[0].price = 9000000; // This should not change newShoppingCart
  * newItem.price = 10; // This should not change newItem
  */
-const addToCart = (shoppingCart, newItem) => {};
+const addToCart = (shoppingCart, newItem) => {
+  let shoppyCOPY = JSON.parse(JSON.stringify( shoppingCart ));
+  let itemCOPY  =  JSON.parse(JSON.stringify( newItem ));
+  shoppyCOPY.push(itemCOPY) ;
+  return  shoppyCOPY  ;
+                                              };
 
 module.exports = {
   changeEmail,
