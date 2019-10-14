@@ -5,7 +5,7 @@ const {
   truncateString
 } = require("../../challenges/10-14-challenges/10-14-challenges");
 
-describe.only("challenges/10-7-challenges/10-7-challenges.js", () => {
+describe("challenges/10-7-challenges/10-7-challenges.js", () => {
   it("should remove the first element from the array", () => {
     const arr = removeElement([1, 2, 3, 4]);
     expect(arr.length).to.equal(3);
