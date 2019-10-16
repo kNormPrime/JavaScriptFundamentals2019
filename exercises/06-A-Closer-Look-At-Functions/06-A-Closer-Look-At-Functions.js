@@ -7,7 +7,11 @@
  *
  */
 
-function objectMaker() {}
+function objectMaker() 
+{ let student = "kevin" ; 
+  let smpl_OBJ = {name: student} ; 
+  return smpl_OBJ ;
+}
 
 /**
  *  As a programmer, I would like to be able to call on a function that returns an object that will allow me to
@@ -35,11 +39,15 @@ function objectMaker() {}
  *
  */
 
-function groceryList() {
+function groceryList() 
+{ //// start function
   let groceryItems = [];
 
-  return {};
-}
+  return {  add: (str)=>{groceryItems.push(str); return groceryItems ; } , 
+              remove: (num)=>{ groceryItems.splice((num-1),1); return groceryItems ; } , 
+              getList: ()=>{ return groceryItems ; } 
+          } ;   /// end object 
+} //// end function
 
 /**
  *  slides
@@ -66,6 +74,15 @@ const calculator = () => {
    * that should return the value of "sum" above.
    * @returns {number} the value of sum
    */
+
+   //// start my calculator function here
+   let sum = 0 ;  // always good to declare summer or counter variable @ 0
+
+   return  {  
+                addThis: (num)=>{sum = sum + num ;} ,   // setter method
+                getTotal: ()=> {return sum ;}           // getter method
+            }  ;  // end object
+   //// end my function here
 };
 
 /**
@@ -116,7 +133,12 @@ const guessingGame = numberOfRounds => {};
  * @param {number} a
  * @param {number} b
  */
-const multiplier = (a, b) => {};
+const multiplier = (a, b) => {
+if (b===undefined) {
+   return (b) => a*b ;
+}
+   return a*b ;
+};
 
 /** Currying End */
 
@@ -133,7 +155,10 @@ const multiplier = (a, b) => {};
  *  - Eddy
  * @param {string} name instuctor name
  */
-const printer = () => {};
+const printer = (name , formatter) => 
+  {let format = (` ---> ` + name + ` <--- `);
+     return format ;
+  };
 
 /**
  * Loops through the array of strings
@@ -141,7 +166,11 @@ const printer = () => {};
  * @param {array}
  * @param {function} callback printer function
  */
-const printNames = () => {};
+const printNames = () =>
+{
+  for(let i =0 ; i<allNames.length ; i++) 
+  { console.log(printer(allNames[i]));  }
+}; 
 
 /*** callback ends */
 
