@@ -1,5 +1,5 @@
 /***
- *  a test
+ *
  *  Create a function that  returns an object.
  *  The object will be a simple object with just the key being name and the value being the students name
  *   objectMaker() // {'name':'matina'}
@@ -184,7 +184,7 @@ const printNames = () =>
  * @param {array} arr
  * @param {function} callback
  */
-const forEach = (arr, callback) => {};
+const forEach = (arr, callback(a,b,arr)=> { arr[b]=("|-->"+a+"<--|"); } ) => { "hi"}  ;
 
 /**
  * Given an array of strings, remove all letters of each value except the first and last character in the strings
