@@ -110,7 +110,34 @@ const calculator = () => {
  * guessRound2(1); // "No more guesses. The answer was 0"
  */
 
-const guessingGame = numberOfRounds => {};
+const guessingGame = numberOfRounds =>  //////////////////////////////////////
+{   let answer = Math.floor(Math.random()*10);
+    let guesses = 0;    let amount =  numberOfRounds ;
+    const  str1 = "Your too high!"  ;
+    const  str2 = "You're too low!" ;
+    const  str3 = "You got it!"  ;
+    const  str4 = "No more guesses. The answer was " + answer ;
+     
+        let outMessage = (guess)=> 
+            {   guesses = guesses +1 ;   ////////////////////////////////
+                let strOUT = "default message"; 
+              if(guesses > amount) {strOUT = str4 ;}
+              else
+              {  /// main else 
+                if(guesses === amount)
+                 {  if(guess===answer)  {strOUT = str3 ;}
+                    else    {strOUT = str4 ;}
+                 }  
+                else
+                 {  if(guess === answer)  {strOUT = str3 ;}
+                    else if(guess < answer) {strOUT = str2 ;}
+                    else                  {strOUT = str1 ;}    
+                 } 
+               } /// end main else 
+               return strOUT ;
+            }   ;            //end funct outMessage /////////////////////
+    return outMessage ;
+}  ;  //end funct guessingGame ////////////////////////////////////////////////
 
 /** CLOSURES END */
 
@@ -133,12 +160,10 @@ const guessingGame = numberOfRounds => {};
  * @param {number} a
  * @param {number} b
  */
-const multiplier = (a, b) => {
-if (b===undefined) {
-   return (b) => a*b ;
-}
-   return a*b ;
-};
+const multiplier = (a, b) =>  
+{  if (b===undefined) {return (b) => a*b ; }
+        return a*b ;
+ };
 
 /** Currying End */
 
@@ -184,7 +209,8 @@ const printNames = () =>
  * @param {array} arr
  * @param {function} callback
  */
-const forEach = (arr, callback(a,b,arr)=> { arr[b]=("|-->"+a+"<--|"); } ) => { "hi"}  ;
+const forEach = (arr, myFUNK(a,b,arr)) => { arr[b]= ("|-->" + a + "<--|") ; return arr[b];} ;
+//let myFUNK = (a,b,arr) => { arr[b]= ("|-->" + a + "<--|") ; return arr[b]; }  ;
 
 /**
  * Given an array of strings, remove all letters of each value except the first and last character in the strings
