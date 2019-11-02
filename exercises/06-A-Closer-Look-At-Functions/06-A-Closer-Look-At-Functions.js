@@ -113,7 +113,7 @@ const calculator = () => {
 const guessingGame = numberOfRounds =>  //////////////////////////////////////
 {   let answer = Math.floor(Math.random()*10);
     let guesses = 0;    let amount =  numberOfRounds ;
-    const  str1 = "Your too high!"  ;
+    const  str1 = "You're too high!"  ;
     const  str2 = "You're too low!" ;
     const  str3 = "You got it!"  ;
     const  str4 = "No more guesses. The answer was " + answer ;
@@ -128,10 +128,10 @@ const guessingGame = numberOfRounds =>  //////////////////////////////////////
                  {  if(guess===answer)  {strOUT = str3 ;}
                     else    {strOUT = str4 ;}
                  }  
-                else
+                if(guesses < amount)
                  {  if(guess === answer)  {strOUT = str3 ;}
                     else if(guess < answer) {strOUT = str2 ;}
-                    else                  {strOUT = str1 ;}    
+                    else                   {strOUT = str1 ;}    
                  } 
                } /// end main else 
                return strOUT ;
@@ -180,7 +180,7 @@ const multiplier = (a, b) =>
  *  - Eddy
  * @param {string} name instuctor name
  */
-const printer = (name , formatter) => 
+const printer = (name ) => 
   {let format = (` ---> ` + name + ` <--- `);
      return format ;
   };
@@ -191,7 +191,7 @@ const printer = (name , formatter) =>
  * @param {array}
  * @param {function} callback printer function
  */
-const printNames = () =>
+const printNames = (allNames, printer) =>
 {
   for(let i =0 ; i<allNames.length ; i++) 
   { console.log(printer(allNames[i]));  }
@@ -209,8 +209,11 @@ const printNames = () =>
  * @param {array} arr
  * @param {function} callback
  */
-const forEach = (arr, myFUNK(a,b,arr)) => { arr[b]= ("|-->" + a + "<--|") ; return arr[b];} ;
-//let myFUNK = (a,b,arr) => { arr[b]= ("|-->" + a + "<--|") ; return arr[b]; }  ;
+const forEach =  (arr,callback) =>{
+  let newArray = []; 
+  for(let i=0; i< arr.length; i++ )
+  {newArray.push( callback(arr[i], i, arr)) ;  }
+    };
 
 /**
  * Given an array of strings, remove all letters of each value except the first and last character in the strings
@@ -220,7 +223,10 @@ const forEach = (arr, myFUNK(a,b,arr)) => { arr[b]= ("|-->" + a + "<--|") ; retu
  *   showFirstAndLast(['colt','matt', 'tim', 'udemy']); // ["ct", "mt", "tm", "uy"]
  *   showFirstAndLast(['hi', 'goodbye', 'smile']) // ['hi', 'ge', 'se']
  */
-const showFirstAndLast = arr => {};
+const showFirstAndLast = arr => {
+  arr.forEach( (word,idx,array)=>{ (array[idx]) = (word[0]+ word[word.length-1]) ; } ) ;
+      return arr ;
+};
 
 /***ForEach ends */
 
@@ -231,14 +237,20 @@ const showFirstAndLast = arr => {};
  * @param {function} callback
  * @returns {array} new array
  */
-const map = (arr, callback) => {};
+const map = (arr,callback) =>{
+  let newArray = []; 
+  for(let i=0; i< arr.length; i++ )
+  {newArray.push( callback(arr[i], i, arr)) ;  }
+    return newArray ;
+};
+
 
 /**
  * Multiplies each value in an array by two
  * @param {array} arr an array of numbers e.g. [1, 3, 5]
  * @returns {array} new array, with each value doubled e.g. [2, 5, 10]
  */
-const doubleValues = arr => {};
+const doubleValues = arr => {   map(arr, (x,s,t)=>{t[s]=x*2; } ) ; return arr;    };
 
 /**
  * Given an array nested with objects
@@ -258,7 +270,13 @@ const doubleValues = arr => {};
  * ];
  * extractKey(arrayOfNames, 'name'); // ['Ellie', 'Tim', 'Matt', 'Colt']
  */
-const extractKey = (arr, key) => {};
+const extractKey = (arr, key) => {  
+  let newArray = []; 
+  for(let i=0; i< arr.length; i++ )
+ { newArray.push(arr[i][key]) ;  }
+   return newArray ;
+};    // newArray = arr.map((v,i,a)=>{ a[i] = v[i][key]; });  return newArray;
+
 
 /**
  * Build your own filter function
@@ -267,7 +285,10 @@ const extractKey = (arr, key) => {};
  * @param {function} callback
  * @returns {mixed} a array of values with the values with some of the values removed
  */
-const filter = (arr, callback) => {};
+const filter = (arr, callback) => { let newArray = [];
+  for(let i=0;i<arr.length; i++) 
+  {if(callback(arr[i],i,arr)) {newArray.push(arr[i]);} }
+  return newArray ; };
 
 /**
  * Delete the matching user from an array of user objects
@@ -288,7 +309,10 @@ const filter = (arr, callback) => {};
  * findUser(users, 1025);
  * // [{ id: 1024, username:"smile134", email: "smile134@example.com" }]
  */
-const deleteUser = (arr, id) => {};
+const deleteUser = (arr, id) => {
+  let newArray = arr.filter((x,y,z)=> (x.id !== id) );
+  return newArray; 
+};
 
 /**
  * Build your own find function
@@ -297,7 +321,12 @@ const deleteUser = (arr, id) => {};
  * @param {function} callback
  * @returns {mixed} a single value in the array
  */
-const find = (arr, callback) => {};
+const find = (arr, callback) => {
+  let foundVal  ;
+  for(let i=0;i<arr.length; i++) 
+  {if(callback(arr[i],i,arr)) {foundVal = (arr[i]);} }
+  return foundVal ; 
+};
 
 /**
  * Find and return the matching user in an array of user objects
@@ -318,7 +347,10 @@ const find = (arr, callback) => {};
  * findUser(users, 1025);
  * // { id: 1025, username:"newyorkfarmer", email: "johndoe@example.com" }
  */
-const findUser = (arr, id) => {};
+const findUser = (arr, id) => {
+  return arr.find((x,y,z)=> (x.id === id) );
+  
+};
 
 /**
  * Given an array of numbers, return the sum
@@ -328,14 +360,35 @@ const findUser = (arr, id) => {};
  *  addItems([1,5,6]) // 12
  *  addItems([1,-2,-3]) // -4
  */
-const addItems = arr => {};
+const addItems = arr => { 
+  /*   //my original working code
+    let sum = 0; 
+    for(let i =0; i<arr.length; i++) { sum = sum + arr[i];}
+    return sum ;
+    */     
+    //   //code supposed to use for class
+    let sum = arr.reduce((acc,val)=>{return acc+val;}); return sum;
+    //
+};
 
 /**
  * Create a function that flattens an array (that is, it should "unnest" a nested array).
  * @param {array} array e.g. `[[1, 3], [5, 10]]`
  * @returns {array} new, flattened array e.g. `[1, 3, 5, 10]`
  */
-const flattenArray = array => {};
+const flattenArray = array => {
+  /*   //my original working code
+    let unitedArr = [];
+    for(let i=0; i<array.length; i++)
+    { let innerArr = array[i];  for(let j=0; j<innerArr.length; j++)
+                                {unitedArr.push(innerArr[j]);}
+    }    return unitedArr;
+    */     
+    //   //code supposed to use for class
+    let unityArr = array.reduce((acc,val,indx,ary)=>{return acc.concat(val); }, []); 
+    return unityArr ;
+    //
+};
 
 /**
  * Create a function that tallies the number of each kind of "thing" within the array
@@ -345,7 +398,32 @@ const flattenArray = array => {};
  *   let fruits = ['Apple', 'Orange', 'Apple', 'Blueberry', 'Grape', 'Grape'];
  *   generateTally(generateTally); // {Apple: 2, Orange: 1, Blueberry: 1, Grape: 2}
  */
-const generateTally = array => {};
+const generateTally = array => { 
+  /*  //my original working code 
+  let sumz = [] ; let keepCOUNT = [] ;
+  let dynamicCopy = array;   let tallyOUT = {} ;
+ for(let i = 0; i<array.length; i++)
+ { let counter = 0 ; sumz[i]=1;
+      for(let j=(i+1); j<array.length; j++)
+   {   if(array[j]===array[i]) {sumz[j]=1 ; dynamicCopy[j]='empty';} 
+       else {sumz[j]=0; }
+   } 
+     counter = ( addItems(sumz) ) ;  
+       if(dynamicCopy[i]==='empty'){keepCOUNT[i]=0;}
+        else {keepCOUNT[i]= counter;} 
+        sumz[i]=0; //count = 0; 
+       if(dynamicCopy[i] !== 'empty') { tallyOUT[dynamicCopy[i]] = keepCOUNT[i]; }
+ } return tallyOUT;
+   */ 
+ //   //code supposed to use for class
+ let count = array.reduce((arr,val)=>{
+   if(!arr[val]) arr[val] =1;
+   else arr[val] = arr[val] +1 ;
+   return arr;
+ }, {} ) ;     
+ return count ;
+ //
+ };
 
 /**
  * Create a function, that when given an array of object literals, will index the object literals by a single column
@@ -369,7 +447,22 @@ const generateTally = array => {};
  *   456: {id, 456, name: 'Rachel', age: 35}
  * }
  */
-const arrayToObject = arr => {};
+const arrayToObject = arr => 
+{ /*  //my original working code
+  let keyz = []; let objOUT = {};
+for(let i=0; i<arr.length; i++)
+  { keyz[i] = (Object.values(arr[i])[0]) ;
+    objOUT[keyz[i]] = arr[i] ;
+  }  return objOUT; 
+   */
+  //  //code supposed to use for class 
+  let objNEW = arr.reduce((acc,val,idx,ary)=>{
+    acc[Object.values(ary[idx])[0]] = val;
+    return acc;
+  }, {} );
+  return objNEW ;
+  //
+};
 
 module.exports = {
   objectMaker,
