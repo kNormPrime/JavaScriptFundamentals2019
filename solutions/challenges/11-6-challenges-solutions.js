@@ -13,7 +13,7 @@
 
 const waitUntilLater = (callback, time = 0) => {
   setTimeout(() => {
-    console.log(callback());
+    callback();
   }, time);
 };
 
@@ -35,16 +35,8 @@ buttonElement.addEventListener("click", () => {
    * ONLY CHANGE THE NEXT TWO LINES. Fix the bug so that callbacks are used correctly.
    * (You will still need to use the `waitUntilLater` and `getEmailText` functions.)
    */
-<<<<<<< HEAD
-  //const emailText = waitUntilLater(getEmailText, 500);
-  waitUntilLater(()=>{ const emailText = getEmailText ;
-   return buttonElement.textContent = "Send to " + emailText ;} ,500);
-  
-=======
   waitUntilLater(() => {
-    const response = getEmailText();
-    console.log({ response });
-    buttonElement.textContent = "Send to " + response;
+    const emailText = getEmailText();
+    buttonElement.textContent = "Send to " + emailText;
   }, 500);
->>>>>>> 7b35e46fc0bdb1ac9824e28a288f3be60222f0ec
 });
