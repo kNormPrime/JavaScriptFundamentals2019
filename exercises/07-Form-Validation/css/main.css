@@ -301,12 +301,14 @@ input {
   width: 100%;
   font-size: 14px;
   font-family: inherit;
+  
 }
 
 .input-group {
   position: relative;
   margin-bottom: 30px;
   border-bottom: 2px solid #ccc;
+  
 }
 
 .input-icon {
@@ -325,9 +327,11 @@ input {
 
 .input--style-1 {
   padding: 9px 0;
-  color: #666;
+  color:   #666; 
+  background: none;
 }
 
+  
 .input--style-1::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #555;
@@ -359,7 +363,7 @@ input {
    #SELECT2
    ========================================================================== */
 .select--no-search .select2-search {
-  display: none !important;
+  display: none !important;  
 }
 
 .rs-select2 .select2-container {
@@ -371,6 +375,7 @@ input {
   outline: none;
   border: none;
   height: 34px;
+  
 }
 
 .rs-select2
@@ -403,6 +408,7 @@ input {
   -moz-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  
 }
 
 .rs-select2
@@ -425,6 +431,7 @@ input {
   -o-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
   transition: all 0.4s ease;
+  
 }
 
 .rs-select2
@@ -449,6 +456,7 @@ input {
   border: 1px solid #e0e0e0;
   margin-top: 5px;
   overflow: hidden;
+ 
 }
 
 /* ==========================================================================

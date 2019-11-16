@@ -10,68 +10,55 @@
 */
 //////////////////////// code below ////////////////////////////
 
-let userINPUT = [] ;
+
+let userINPUT = [] ;  
 
 const validator = ()=>
-{
+{  
 const usersName = document.querySelector("#name");
-if(usersName.value)
-{   // userINPUT.push(usersName.target.value);
-   //  console.log((usersName.value));}
-    userINPUT.push(usersName.value);}   
-else{console.log('make name red'); userINPUT.push('RED');}
+if(usersName.value){userINPUT[0]=usersName.value; }   
+else{usersName.style.background ="#ff0000"; userINPUT[0]=false; }
 
 const usersBirth = document.querySelector("#birthday");
-if(usersBirth.value){ userINPUT.push(usersBirth.value); }   
-else{console.log('make birth red'); userINPUT.push('RED');}
+if(usersBirth.value){ userINPUT[1]=usersBirth.value; }   
+else{usersBirth.style.background ="#ff0000"; userINPUT[1]=false; }
 
 const usersGend = document.querySelector("#gender");
-if(usersGend.value){ userINPUT.push(usersGend.value); }   
-else{console.log('make gender red'); userINPUT.push('RED');}
+if(usersGend.value!=='GENDER'){ userINPUT[2]=usersGend.value; }   
+else{usersGend.style.background ="#ff0000"; userINPUT[2]=false;}
 
 const usersGuest = document.querySelector("#guestcount");
-if(usersGuest.value){ userINPUT.push(usersGuest.value); }   
-else{console.log('make guests red'); userINPUT.push('RED');}
+if(usersGuest.value!=="How many Guest"){ userINPUT[3]=usersGuest.value; }   
+else{usersGuest.style.background ="#ff0000"; userINPUT[3]=false;}
 
 const usersRegist = document.querySelector("#registration");
-if(usersRegist.value){ userINPUT.push(usersRegist.value); }   
-else{console.log('make registration red'); userINPUT.push('RED');}
+if(usersRegist.value){ userINPUT[4]=usersRegist.value; }   
+else{usersRegist.style.background ="#ff0000"; userINPUT[4]=false; }
 
-
-
-
-console.log((userINPUT));
+return userINPUT ;
 };
 
-/* usersName.addEventListener("input", nameTYPED => {
- userINPUT.push(nameTYPED.target.value);  
- console.log(nameTYPED.target.value);  }) ; */
 
-
+let FORM = document.querySelector("form") ;
 const submitBUTTON = document.querySelector('[type="submit"]') ;
 submitBUTTON.addEventListener("click", submissionCLICK =>
-{   console.log("HI");
-   
-    submissionCLICK.preventDefault(console.log(validator())) ;
-   // validator() ;
-   // console.log(userINPUT);
+{   
+    submissionCLICK.preventDefault((validator())) ;
+    
+    let displayTHIS = {name: userINPUT[0], birthdate: userINPUT[1],
+      gender: userINPUT[2], guestCount: userINPUT[3], registration: userINPUT[4]} ;
+   // const thisDIV = document.querySelectorAll('[class="card-body"]') ;
+    if(userINPUT[0]&&userINPUT[1]&&userINPUT[2]&&userINPUT[3]&&userINPUT[4])
+        {FORM.style.display="none" ; console.log('confirmed!');
+         let displayUSER = document.createElement("PRE") ;
+         displayUSER.innerHTML=("\n\n\t\t\t\t\t\t  Sign-up confirmed!\n\n"
+                               +"\n\t\t\t\t\t"+ JSON.stringify(displayTHIS)+ "\n\n\n") ;
+         document.body.appendChild(displayUSER);
+        }
+    
 } );
 
-/* const submitBUTTON = document.querySelector("#button") ;
-submitBUTTON.addEventListener("form", submissionCLICK =>
-{   console.log("HI");
-   // submissionCLICK.preventDefault() ;
-   // validator() ;
-   // console.log(userINPUT);
-} ); */
 
-/* const requiredFORM = document.querySelector("#form") ;
-requiredFORM.addEventListener("button", submissionCLICK =>
-{   console.log("HI");
-   submissionCLICK.preventDefault() ;
-   validator() ;
-   console.log(userINPUT);
-} ); */
 
 
 
