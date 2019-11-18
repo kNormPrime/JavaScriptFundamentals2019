@@ -16,3 +16,34 @@
  *
  */
 
+//////////////// code start here /////////////////////////
+const fetchDOG = () => 
+{ ////////// fetchDOG  //////////////////
+
+ fetch('https://dog.ceo/api/breeds/image/random', { method: 'GET'} )
+  .then(response => response.json())
+  
+
+  .then(response => 
+   {
+   let dogPIC = document.querySelector("#image") ;
+   let dogDATA = response.message ;
+   dogPIC.src =  dogDATA ;
+   
+   let describeDOG = document.querySelector("h2") ;
+   describeDOG.innerText =   "Another fine pup..." ;
+   })
+
+  .catch(error =>
+   {
+    const dogPOO = '<div class="text-danger">Sorry, ' +
+            'but an unexpected error occurred in doggie search. '+error+'</div>';
+    document.querySelector('.container').insertAdjacentHTML('beforeend', dogPOO);
+   });
+};  ////////end fetchDOG ////////////////
+
+const daButton = document.querySelector("button") ;
+daButton.addEventListener("click", ()=>{ fetchDOG() ; } ) ;  
+
+
+//////////////// code end here  //////////////////////////
